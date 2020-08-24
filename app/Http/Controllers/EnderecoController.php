@@ -46,9 +46,12 @@ class EnderecoController extends Controller
     public function salvar(
         SalvarRequest $request
     ) {
+        //$endereco = Endereco::where('cep', $request->input('cep'))->first();
         $endereco = Endereco::where('cep', $request->input('cep'))->first();
+        $numero = Endereco::where('numero', $request->input('numero'))->first();
 
-        if(!$endereco){   
+
+        if(!$endereco || !$numero){   
             Endereco::create(
                 [
                 'cep' => $request->input('cep'),
